@@ -1,5 +1,7 @@
 function ff=frek(nota,oktav) %ff deðerini döndürecek frek fonksiyonu oluþturdum.
-notalar=['A' 'a' 'B' 'b' 'C' 'c' 'D' 'd' 'E' 'e' 'F' 'f' 'G' 'g' 'H' 'h'] %notalarý harf kullanarak tanýmladým.
+notalar=['C' 'c' 'D' 'd' 'E' 'F' 'f' 'G' 'g' 'A' 'a' 'B']; %A=La,a(A#,Bb)=#La,B=Si, 
+ %C=Do,c(C#,Db)=#Do,D=Re,d(D#,Eb)=#Re,E=Mi,F=Fa,f(F#,Gb)=#Fa,G=Sol,g(G#,Ab)=#Sol 
+
 referans=16.35; %referansý Do notasýnýn 0. oktavdaki deðeri olarak belirledim.
 p=length(notalar); %p deðiþkenine notalar matrisinin uzunluðunu atadým.
 
