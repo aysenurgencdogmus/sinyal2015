@@ -1,8 +1,7 @@
-function [xx,tt] = note(f,dur) %xx ve tt deðerlerini döndürecek note fonksiyonu oluþturdum.
+function [x,t] = note(f,dur) %xx ve tt deðerlerini döndürecek note fonksiyonu oluþturdum.
 
-ff=2*pi*f
-tt=0:1/(ff*1000):dur; % grafiði çizdireceðim tt aralýðýný tanýmladým.
-xx=sin(tt) %xx deðiþkenini bir sinüs sinyaline atadým.
+t=0:1/(f*100):dur; % grafiði çizdireceðim tt aralýðýný tanýmladým.
+x=sin(2*pi*f*t) %xx deðiþkenini bir sinüs sinyaline atadým.
  end %note fonksiyonunun sonu
 
 %note fonksiyonunun çaðýrýlmasý
