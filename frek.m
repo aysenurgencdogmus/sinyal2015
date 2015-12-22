@@ -1,21 +1,29 @@
-function ff=frek(nota,oktav) %ff deðerini döndürecek frek fonksiyonu oluþturdum.
-notalar=['C' 'c' 'D' 'd' 'E' 'F' 'f' 'G' 'g' 'A' 'a' 'B']; %A=La,a(A#,Bb)=#La,B=Si, 
- %C=Do,c(C#,Db)=#Do,D=Re,d(D#,Eb)=#Re,E=Mi,F=Fa,f(F#,Gb)=#Fa,G=Sol,g(G#,Ab)=#Sol 
+ function ff=frek(nota,oktav)  %argümanlarý nota ve oktav olan frek fonksiyonu oluþturdum
+ notalar={'Do','Dod', 'Re', 'Mib' ,'Mi' ,'Fa', 'Fad', 'Sol', 'Sold', 'La', 'Sib', 'Si','Sus'}; %notalar dizisi oluþturup notalarý ekledim. 
+ referans=16.35;  %do notasýnýn 0.oktavdaki deðerini referans aldým. 
+ p=length(notalar); %p deðiþkenini notalar dizisinin uzunluðuna eþitledim. 
+ if nargin<2 %argümanlarýn sayýsý 2 den küçükse 
+      oktav=4; %oktavý 4 e eþitle 
+ end 
+for i=0:8 %oktav için bir for oluþturdum ve her seferinde bir arttýrdým. 
+    if i==oktav %i'nin deðeri benim giriþ yaptýðým oktav'ýn deðerine eþitse 
+       for j=1:p %notalar dizindeki elemanlar için for döngüsü oluþturdum 
+            if  size(nota)==size(notalar{j}) %argüman olan nota boyutu eþit ise notalar dizisindeki j.elemana 
+               if nota==notalar{j}%argüman olan nota, notalar dizisindeki j. elemana eþitse 
+                   ff=2^i*(2^((j-1)/12)*referans);%frekansý hesaplýyorum 
+                   if size(nota)==size(notalar{13})%argüman olan nota boyutu eþit ise notalar dizisindeki 13.elemana 
+                   if nota==notalar{13}%argüman olan nota notalar dizisindeki 13. elemana eþitse 
+                       ff=0; %frekansý 0 a eþitle. 
+                    end 
+                   end 
+               end  
+           end 
+        end 
+     end 
+ end 
+ end 
 
-referans=16.35; %referansý Do notasýnýn 0. oktavdaki deðeri olarak belirledim.
-p=length(notalar); %p deðiþkenine notalar matrisinin uzunluðunu atadým.
-
-for okt=0:8  %oktav deðeri 0dan 8e kadar 1er 1er artacak
-  if okt==oktav %girilen oktav deðeri 0 ile 8 arasýnda bir deðere eþitse
-    for j=1:p %j deðeri 1den baþlayýp matrisin boyutuna kadar 1er 1er artacak
-      if nota==char(notalar(j)) %girilen nota notalar matrisindeki bir elemana eþitse
-	 ff==2^okt*(2^((j-1)/12)*referans; %ff frekans deðerini hesaplayan formül
-	end %if notanýn sonu
-	end %for j'nin sonu
-	end %if okt'un sonu
-	end %for okt'un sonu
-	end %function'ýn sonu
 
 %Frek fonksiyonunun çaðýrýlmasý
 
-f=frek('C',2)
+ f=frek('Sus')  
