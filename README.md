@@ -6,11 +6,12 @@ MATLAB ile Sentezleme
 
 note.m dosyasinin;
 dosya tipi: bir matlab dosyasidir.
-içerigi: sinus sinyalini dondurecek kodlar bulunur.
+Aldýðý argümanlara göre çýkýþýnda paketli bir sinüs sinyali oluþturan fonksiyonu içerir.
 
 frek.m dosyasinin;
 dosya tipi: bir matlab dosyasidir.
-icerigi: istenilen notalarin istenilen oktavdaki degerini dondurecek kodlar bulunur.
+Notalarýn frekans karþýlýklarýný döndüren fonksiyonu içerir.
+
 
 notalar.txt dosyasinin;
 dosya tipi: bir metin dosyasidir.
@@ -22,7 +23,7 @@ icerigi: muzigimize ait notalarin bulundugu resim dosyasidir.
 
 sentez.m dosyasinin;
 dosya tipi: bir matlab dosyasidir.
-icerigi: bos
+Ses calmak icin gerekli kodlar bulunur.
 
 
 Frekanslar arasýndaki baðlantý/oran;
