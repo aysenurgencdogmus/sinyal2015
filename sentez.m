@@ -1,10 +1,10 @@
-Fs=2192; %8192
+Fs=3500; %8192
 gecikme=round(Fs/10);
 notalar=[];
-duraklama=[]; %Fs/1000; %duraklama suresi
-oktdegis=0; %oktav'a eklenmek istenen deger oktdegis degiskeniyle eklenecek[-3,+3].
+duraklama=Fs/10000; %duraklama suresi
+oktdegis=2; %oktav'a eklenmek istenen deger oktdegis degiskeniyle eklenecek[-3,+3].
 dosya=fopen('notalar.txt','r'); %text dosyasýný acar,'r':okumak için.
-[nota,oktav,olcu]=textread('notalar.txt','%s%d%s'); %bosluk ile ayrýlmýs degiskenler okundu.
+[nota,oktav,olcu]=textread('notalar.txt','%s%d%s','delimiter',','); %bosluk ile ayrýlmýs degiskenler okundu.
 fclose(dosya); %text dosyasý kapatýldý.
 frekans=zeros(1,length(nota));
 if oktdegis~=0 %oktdegis degiskeninde degisiklik yapýlmasý durumunda islenecek sart. 
@@ -18,8 +18,8 @@ for i=1:length(nota)
     notalar=[notalar sindalga duraklama];
 end  
 for i=1:length(notalar)
-    if (i+gecikme)<length(notalar)
-        notalar(i+gecikme)=notalar(i+gecikme)+0.3*notalar(i); 
+    if (gecikme)<length(notalar)
+        notalar(i)=notalar(i)+0.3*notalar(gecikme); 
     end
 end
 notalar = notalar/max(abs(notalar));
