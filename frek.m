@@ -12,8 +12,8 @@ function ff=frek(nota,oktav)  %argümanlarý nota ve oktav olan frek fonksiyonu ol
  end
  
  %%Frekans degerini hesaplamak icin
-for o=0:8 %oktav için bir for oluþturdum ve her seferinde bir arttýrdým. 
-    if o==oktav %i'nin deðeri benim giriþ yaptýðým oktav'ýn deðerine eþitse 
+for okt=0:8 %oktav için bir for oluþturdum ve her seferinde bir arttýrdým. 
+    if okt==oktav %i'nin deðeri benim giriþ yaptýðým oktav'ýn deðerine eþitse 
        for j=1:p %notalar dizindeki elemanlar için for döngüsü oluþturdum 
             if  size(nota)==size(notalar{j}) %argüman olan nota boyutu eþit ise notalar dizisindeki j.elemana 
                if nota==notalar{j}%argüman olan nota, notalar dizisindeki j. elemana eþitse 
