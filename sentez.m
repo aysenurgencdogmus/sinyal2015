@@ -1,27 +1,39 @@
-Fs=3500; %8192
-gecikme=round(Fs/10);
-notalar=[];
+%% Degerleri tanimladim, dosyadan deger okuttum.
+Fs=3500; %ornekleme frekansini tanimladim
+gecikme=round(Fs/10); %echonun gecikme suresi
+notalar=[];% notalar matrisi icin ilk deger atadim.
 duraklama=Fs/10000; %duraklama suresi
-oktdegis=2; %oktav'a eklenmek istenen deger oktdegis degiskeniyle eklenecek[-3,+3].
-dosya=fopen('notalar.txt','r'); %text dosyasýný acar,'r':okumak için.
-[nota,oktav,olcu]=textread('notalar.txt','%s%d%s','delimiter',','); %bosluk ile ayrýlmýs degiskenler okundu.
-fclose(dosya); %text dosyasý kapatýldý.
+oktdegis=2; %oktav'a eklenmek istenen deger oktdegis degiskeniyle eklenecek[-2,+2].
+dosya=fopen('notalar.txt','r'); %notalar.txt dosyasýný ac,'r' ile okuma yap.
+[nota,oktav,olcu]=textread('notalar.txt','%s%d%s','delimiter',','); %virgul ile ayrýlan degiskenleri okur.
+fclose(dosya); %notalar.txt dosyasi kaptilir.
 frekans=zeros(1,length(nota));
-if oktdegis~=0 %oktdegis degiskeninde degisiklik yapýlmasý durumunda islenecek sart. 
-    for j=1:length(oktav) %text'ten cekilen oktav degerleri dongu icerisinde degistirilecek.
+
+%% Oktav degisimi oldugunda gerceklesecekler;
+if oktdegis~=0 %oktdegis degiskeni degistirlirse
+    for j=1:length(oktav) %notalar.txt'ten okunan oktav degerlerini dongude degistir.
         oktav(j)=oktav(j)+oktdegis; 
     end
 end
+
+%% Notalarýn sinyalini olusturmak icin;
 for i=1:length(nota)
-    frekans(i)=frek(nota{i},oktav(i)); %frek fonsiyonu cagýrýlarak frekans degerleri hesaplandý. 
-    [sindalga,t]=note(frekans(i),str2num(olcu{i})); %note fonksiyonu cagýrýlarakta sin sinyalleri cizildi.
-    notalar=[notalar sindalga duraklama];
+    frekans(i)=frek(nota{i},oktav(i)); %frek fonsiyonunu cagýrýp frekans degerlerini hesapla
+    [sindalga,t]=note(frekans(i),str2num(olcu{i})); %note fonksiyonu ile sin sinyallerini ciz.
+    notalar=[notalar sindalga duraklama];%notalarýn sinyalleri arasýna bosluk eklenerek notalar matrisinde birlestirildi. 
+
 end  
+
+%% Echo eklemek icin;
 for i=1:length(notalar)
-    if (gecikme)<length(notalar)
-        notalar(i)=notalar(i)+0.3*notalar(gecikme); 
-    end
+    if (i+gecikme)<length(notalar)%gecikme notalar uzunlugunu asmadýgý surece islenecek sart.
+        notalar(i+gecikme)=notalar(i+gecikme)+0.3*notalar(i); %Fs, 10'da biri süresince geciktirilip(gecikme)
+    end                                                      %++genliði %30 oranýnda düþürülerek kendisi ile toplandý.
 end
+
+%% Sinyallerin tepe degerini normalize etmek icin;
 notalar = notalar/max(abs(notalar));
+
+%% Notalarin grafigini cizip, muzigi caldirmak icin;
 plot(notalar)
 sound(notalar,Fs);
